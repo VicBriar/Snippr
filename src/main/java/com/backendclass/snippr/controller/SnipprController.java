@@ -3,17 +3,20 @@ package com.backendclass.snippr.controller;
 import com.backendclass.snippr.exceptions.SnippetNotFoundException;
 import com.backendclass.snippr.models.Snippet;
 import com.backendclass.snippr.repository.SnippetRepository;
+import com.backendclass.snippr.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/snippets")
-class SnippetController {
+class SnipprController {
     private final SnippetRepository snippetRepository;
+    private final UserRepository userRepository;
 
-    SnippetController(SnippetRepository snippetRepository) {
+    SnipprController(SnippetRepository snippetRepository, UserRepository userRepository) {
         this.snippetRepository = snippetRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
