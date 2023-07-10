@@ -1,7 +1,9 @@
 package com.backendclass.snippr.controller;
 
 import com.backendclass.snippr.exceptions.SnippetNotFoundException;
+import com.backendclass.snippr.exceptions.UserNotFoundException;
 import com.backendclass.snippr.models.Snippet;
+import com.backendclass.snippr.models.User;
 import com.backendclass.snippr.repository.SnippetRepository;
 import com.backendclass.snippr.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,12 @@ class SnipprController {
     }
 
     @GetMapping("/snippets")
-    List<Snippet> all() {
+    List<Snippet> allSnippets() {
         return snippetRepository.findAll();
     }
 
     @GetMapping("/snippets/{id}")
-    Snippet one(@PathVariable Long id) {
+    Snippet oneSnippet(@PathVariable Long id) {
         return snippetRepository.findById(id)
                 .orElseThrow(()-> new SnippetNotFoundException(id));
     }
@@ -33,5 +35,16 @@ class SnipprController {
     @PostMapping("/snippets")
     Snippet newSnippet(@RequestBody Snippet newSnippet) {
         return snippetRepository.save(newSnippet);
+    }
+
+    @GetMapping("/users")
+    List<User> allUsers() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    User oneUser(@PathVariable Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(()-> new UserNotFoundException(id));
     }
 }

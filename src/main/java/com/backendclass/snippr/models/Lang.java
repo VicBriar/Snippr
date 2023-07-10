@@ -1,6 +1,6 @@
 package com.backendclass.snippr.models;
 
-public enum Language {
+public enum Lang {
     JAVA,
     JAVASCRIPT,
     TYPESCRIPT,

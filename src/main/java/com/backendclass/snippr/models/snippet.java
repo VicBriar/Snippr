@@ -1,6 +1,5 @@
 package com.backendclass.snippr.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 public class Snippet {
     @Id
@@ -21,7 +19,7 @@ public class Snippet {
 
     @Column(name="language")
     @Enumerated(EnumType.ORDINAL)
-    private Language language;
+    private Lang language;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

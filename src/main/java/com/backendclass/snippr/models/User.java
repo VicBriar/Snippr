@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class User {
   @Id
@@ -24,5 +22,9 @@ public class User {
 
   @OneToMany(fetch = FetchType.LAZY)
   private Set<Snippet> snippets;
-
+  public User () {}
+  public User (String email, String password) {
+    this.email = email;
+    this.password = password;
+  }
 }
