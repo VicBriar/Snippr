@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/snippets")
+@RequestMapping("/api")
 class SnipprController {
     private final SnippetRepository snippetRepository;
     private final UserRepository userRepository;
@@ -19,18 +19,18 @@ class SnipprController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping("/snippets")
     List<Snippet> all() {
         return snippetRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/snippets/{id}")
     Snippet one(@PathVariable Long id) {
         return snippetRepository.findById(id)
                 .orElseThrow(()-> new SnippetNotFoundException(id));
     }
 
-    @PostMapping
+    @PostMapping("/snippets")
     Snippet newSnippet(@RequestBody Snippet newSnippet) {
         return snippetRepository.save(newSnippet);
     }
