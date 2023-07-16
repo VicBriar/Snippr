@@ -1,5 +1,6 @@
 package com.backendclass.snippr.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class User {
   @Column(name = "password")
   private String password;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY)
   private Set<Snippet> snippets;
   public User () {}

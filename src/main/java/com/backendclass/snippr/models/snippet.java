@@ -1,13 +1,12 @@
 package com.backendclass.snippr.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Snippet {
     @Id
@@ -21,7 +20,16 @@ public class Snippet {
     @Enumerated(EnumType.ORDINAL)
     private Lang language;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Snippet () {}
+
+    public Snippet (String snippet, Lang language, User user) {
+        this.snippet = snippet;
+        this.language = language;
+        this.user = user;
+    }
 }
